@@ -66,8 +66,8 @@ namespace BulkyBook.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            //var allObj = _unitOfWork.Category.GetAll();
-            var allObj = _unitOfWork.SP_Call.List<Category>(SD.Proc_CoverType_GetAll, null);
+            var allObj = _unitOfWork.Category.GetAll();
+            //var allObj = _unitOfWork.SP_Call.List<Category>(SD.Proc_CoverType_GetAll, null);
             return Json(new { data = allObj });
         }
 
@@ -76,15 +76,15 @@ namespace BulkyBook.Areas.Admin.Controllers
         {
             var parameter = new DynamicParameters();
             parameter.Add("@Id", id);
-            //var objFromDb = _unitOfWork.Category.Get(id);
-            var objFromDb = _unitOfWork.SP_Call.OneRecord<Category>(SD.Proc_CoverType_Get, parameter);
+            var objFromDb = _unitOfWork.Category.Get(id);
+            //var objFromDb = _unitOfWork.SP_Call.OneRecord<Category>(SD.Proc_CoverType_Get, parameter);
 
             if (objFromDb == null)
             {
                 return Json(new { success = false, message = "Error while deleting" });
             }
-            //_unitOfWork.Category.Remove(objFromDb);
-            _unitOfWork.SP_Call.Execute(SD.Proc_CoverType_Delete, parameter);
+            _unitOfWork.Category.Remove(objFromDb);
+            //_unitOfWork.SP_Call.Execute(SD.Proc_CoverType_Delete, parameter);
             _unitOfWork.Save();
             return Json(new { success = true, message = "Delete Successful" });
         }
