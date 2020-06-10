@@ -16,6 +16,7 @@ namespace BulkyBook.DataAccess.Repository
             _db = db;
         }
 
+        //This never gets called, delete?
         public void Update(CoverType coverType)
         {
             var objFromDb = _db.CoverTypes.FirstOrDefault(s => s.Id == coverType.Id);
