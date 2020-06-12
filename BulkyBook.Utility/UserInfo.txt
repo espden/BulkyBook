@@ -1,0 +1,11 @@
+﻿Admin Account
+admin@gmail.com, Admin123$
+
+Customer Account
+customer@gmail.com, Cust123$
+
+Authorized Company
+auth@gmail.com, Auth123$
+
+Nonauthorized company
+nonauth@gmail.com, Nonauth123$
