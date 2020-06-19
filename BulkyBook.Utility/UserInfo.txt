@@ -9,3 +9,6 @@ auth@gmail.com, Auth123$
 
 Nonauthorized company
 nonauth@gmail.com, Nonauth123$
+
+Employee
+employee@gmail.com, Emp123$

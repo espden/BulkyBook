@@ -7,11 +7,13 @@ using BulkyBook.DataAccess.Repository.IRepository;
 using BulkyBook.Models;
 using BulkyBook.Utility;
 using Dapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BulkyBook.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles=SD.Role_Admin)]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -73,8 +75,6 @@ namespace BulkyBook.Areas.Admin.Controllers
         [HttpDelete]
         public IActionResult Delete(int id)
         {
-            var parameter = new DynamicParameters();
-            parameter.Add("@Id", id);
             var objFromDb = _unitOfWork.Category.Get(id);
 
             if (objFromDb == null)

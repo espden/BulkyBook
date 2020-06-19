@@ -42,6 +42,25 @@ namespace BulkyBook
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddRazorPages();
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = $"/Identity/Account/Login";
+                options.LogoutPath = $"/Identity/Account/Logout";
+                options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+            });
+            /*
+            Look at video #139 for info on how to implement FaceBook external login
+            services.AddAuthentication().AddFacebook(options =>
+            {
+                options.AppId = "";
+                options.AppSecret = "";
+            });
+            */
+            services.AddAuthentication().AddGoogle(options =>
+            {
+                options.ClientId = "844624391503-8eu5a1co1l5cg9je48alunn3ag8qaab2.apps.googleusercontent.com";
+                options.ClientSecret = "kXnIk9at93R44QsVijf_g6Ms";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

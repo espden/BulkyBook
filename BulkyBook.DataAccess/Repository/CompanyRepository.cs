@@ -19,6 +19,7 @@ namespace BulkyBook.DataAccess.Repository
         public void Update(Company company)
         {
             _db.Update(company);
+            _db.SaveChanges();
             /*
             This commented-out code can easily be performed by the above single command.
             var objFromDb = _db.Companies.FirstOrDefault(s => s.Id == company.Id);
@@ -31,7 +32,7 @@ namespace BulkyBook.DataAccess.Repository
                 objFromDb.PostalCode = company.PostalCode;
                 objFromDb.PhoneNumber = company.PhoneNumber;
                 objFromDb.IsAuthorizedCompany = company.IsAuthorizedCompany;
-                _db.SaveChanges();
+                
             }
             */
         }

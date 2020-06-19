@@ -9,6 +9,7 @@ using BulkyBook.Models;
 using BulkyBook.Models.ViewModels;
 using BulkyBook.Utility;
 using Dapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -17,6 +18,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace BulkyBook.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -33,7 +35,6 @@ namespace BulkyBook.Areas.Admin.Controllers
         }
 
         //Upsert Page when an integer id is provided or not
-        //Should get called when clicking on Create New Product
         public IActionResult Upsert(int? id)
         {
             //Create a Product ViewModel with
@@ -149,8 +150,8 @@ namespace BulkyBook.Areas.Admin.Controllers
         [HttpDelete]
         public IActionResult Delete(int id)
         {
-            var parameter = new DynamicParameters();
-            parameter.Add("@Id", id);
+            //var parameter = new DynamicParameters();
+            //parameter.Add("@Id", id);
             var objFromDb = _unitOfWork.Product.Get(id);
 
             if (objFromDb == null)

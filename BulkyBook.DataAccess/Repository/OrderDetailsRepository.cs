@@ -8,17 +8,17 @@ using System.Text;
 
 namespace BulkyBook.DataAccess.Repository
 {
-    public class CategoryRepository : Repository<Category>, ICategoryRepository
+    public class OrderDetailsRepository : Repository<OrderDetails>, IOrderDetailsRepository
     {
         private readonly ApplicationDbContext _db;
-        public CategoryRepository(ApplicationDbContext db) : base(db)
+        public OrderDetailsRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
         }
 
-        public void Update(Category category)
+        public void Update(OrderDetails orderDetails)
         {
-            _db.Update(category);
+            _db.Update(orderDetails);
             _db.SaveChanges();
         }
     }

@@ -17,7 +17,6 @@ namespace BulkyBook.Areas.Customer.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IUnitOfWork _unitOfWork;
 
-
         public HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork)
         {
             _logger = logger;
@@ -26,9 +25,9 @@ namespace BulkyBook.Areas.Customer.Controllers
 
         public IActionResult Index()
         {
+            //The included properties are never used in the page
             IEnumerable<Product> productList = _unitOfWork.Product.GetAll(includeProperties: "Category,CoverType");
             return View(productList);
-            return View();
         }
 
         public IActionResult Privacy()
